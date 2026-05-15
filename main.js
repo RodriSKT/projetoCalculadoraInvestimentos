@@ -1,8 +1,9 @@
 import { createArrayInvestiments } from "./src/calculateModule.js";
 import { validateInputs } from "./src/validateInputs.js";
 
-     const calculateButton = document.getElementById("calculate-button");
-     const cleanButton = document.getElementById("clean-button");
+// botões
+const calculateButton = document.getElementById("calculate-button");
+const cleanButton = document.getElementById("clean-button");
      
 
 function render(event) {
@@ -12,6 +13,7 @@ function render(event) {
           return;
      }
 
+     // inputs
      const startingAmount = Number(document.getElementById("starting-amount").value.replace(",","."));
      const additionalAmounts = Number(document.getElementById("additional-amounts").value.replace(",","."));
      const investimentTime = Number(document.getElementById("investiment-time").value);

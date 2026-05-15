@@ -28,7 +28,7 @@ const investimentArray = [investimentObject];
 // Para cada mês do período informado, o for vai repetir isso.
 for(let i = 1; i <= mouthlyTimePeriod; i++) {
      const totalAmount = investimentArray[i - 1].totalAmount * mouthlyReturnRate + additionalAmounts;
-     const mouthReturn = investimentArray[i - 1].totalAmount * mouthlyReturnRate;
+     const mouthReturn = investimentArray[i - 1].totalAmount * (mouthlyReturnRate - 1);
      const investedAmount = startingAmount + additionalAmounts * i;
      const totalReturn = totalAmount - investedAmount;
 
