@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@layer utilities {
+     .error {
+     @apply border-2; 
+     @apply rounded-lg;
+     @apply border-red-500;
+     }
+}

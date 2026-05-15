@@ -8,8 +8,7 @@ export function createArrayInvestiments(startingAmount = 0, additionalAmounts = 
 
 if(!startingAmount || !investimentTime) {
      throw new Error("Investimento inicial e prazo devem ser preenchidos")
-}
-
+} else if(startingAmount && investimentTime) {
 // converte o perído e a taxa em mensais de acordo com o que foi selecionado no select
 const mouthlyReturnRate = returnRatePeriod === "mouthly" ? 1 + returnRate/100 : transformRateToMouthly(1 + returnRate/100);
 const mouthlyTimePeriod = investimentTimePeriod === "mouthly" ? investimentTime : investimentTime * 12;
@@ -43,5 +42,6 @@ for(let i = 1; i <= mouthlyTimePeriod; i++) {
 }
 
 return investimentArray;
+}
 
 }

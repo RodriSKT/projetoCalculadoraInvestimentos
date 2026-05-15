@@ -11,26 +11,26 @@
     <h1 class="font-bold text-xl">Calculadora de investimento</h1>
     <form id="investiment-form">
       <!-- 1 =============================== -->
-      <div>
+      <div class="h-[4.5rem]">
       <label for="starting-amount">Investimento inicial</label>
       <div class="flex">
       <input type="text" placeholder="R$" class="w-1/6 bg-emerald-400 text-center rounded-l-lg" disabled>
-      <input type="text" id="starting-amount" class="w-5/6 pl-2 bg-white rounded-r-lg" required placeholder="0.00">
+      <input type="text" id="starting-amount" name="starting-amount" class="w-5/6 pl-2 bg-white rounded-r-lg" required placeholder="0.00">
       </div>
       </div>
       <!-- 2 ================================ -->
-      <div>
+      <div class="h-[4.5rem]">
       <label for="additional-amounts">Aportes adicionais</label>
       <div class="flex">
       <input type="text" placeholder="R$" class="w-1/6 bg-emerald-400 text-center rounded-l-lg" disabled>
-      <input type="text" id="additional-amounts" class="w-5/6 pl-2 bg-white rounded-r-lg" placeholder="0.00">
+      <input type="text" id="additional-amounts" name="additional-amounts" class="w-5/6 pl-2 bg-white rounded-r-lg" placeholder="0.00">
       </div>
       </div>
       <!-- 3 ================================== -->
-      <div>
+      <div class="h-[4.5rem]">
       <label for="investiment-time">Prazo</label>
       <div class="flex">
-      <input type="text" id="investiment-time" class="w-4/6 bg-white rounded-l-lg pl-2" required placeholder="0">
+      <input type="text" id="investiment-time" name="investiment-time" class="w-4/6 bg-white rounded-l-lg pl-2" required placeholder="0">
       <select name="time-period" id="investiment-time-period" class="w-2/6 text-center bg-emerald-500 hover:bg-emerald-600 cursor-pointer rounded-r-lg">
         <option value="mouthly">Mensal</option>
         <option value="yearly">Anual</option>
@@ -38,11 +38,11 @@
       </div>
       </div>
       <!-- 4 ====================================== -->
-       <div>
+       <div class="h-[4.5rem]">
       <label for="return-rate">Rentabilidade</label>
       <div class="flex">
       <input type="text" placeholder="%" class="w-1/6 bg-emerald-400 text-center rounded-l-lg" disabled>
-      <input type="text" id="return-rate" class="w-3/6 bg-white pl-2" required placeholder="0.00">
+      <input type="text" id="return-rate" name="return-rate" class="w-3/6 bg-white pl-2" required placeholder="0.00">
       <select name="time-period" id="return-rate-period" class="w-2/6 text-center bg-emerald-500 hover:bg-emerald-600 rounded-r-lg cursor-pointer">
         <option value="mouthly">Mensal</option>
         <option value="yearly">Anual</option>
@@ -50,17 +50,17 @@
       </div>
       </div>
       <!-- 5 ========================================= -->
-       <div>
+       <div class="h-[4.5rem]">
       <label for="tax">Impostos sobre o lucro</label>
       <div class="flex">
       <input type="text" placeholder="%" class="w-1/6 bg-emerald-400 text-center rounded-l-lg" disabled>
-      <input type="text" id="tex" class="w-5/6 bg-white rounded-r-lg pl-2" placeholder="0.00">
+      <input type="text" id="tax" name="tax" class="w-5/6 bg-white rounded-r-lg pl-2" placeholder="0.00">
       </div>
       </div>
     </form>
     <div class="flex gap-1">
     <button id="calculate-button" form="investiment-form" class="w-1/2 bg-emerald-900 text-white hover:bg-emerald-700 cursor-pointer rounded-md">Calcular</button>
-    <button class="w-1/2 bg-emerald-500 hover:bg-emerald-200 cursor-pointer rounded-md">Limpar</button>
+    <button id="clean-button" class="w-1/2 bg-emerald-500 hover:bg-emerald-200 cursor-pointer rounded-md">Limpar</button>
     </div>
     </section>
     <main>
