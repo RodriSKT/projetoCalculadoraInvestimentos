@@ -1,5 +1,6 @@
 import { createArrayInvestiments } from "./src/calculateModule.js";
 import { validateInputs } from "./src/validateInputs.js";
+import Chart from 'chart.js/auto';
 
      const calculateButton = document.getElementById("calculate-button");
      const cleanButton = document.getElementById("clean-button");
