@@ -1,3 +1,4 @@
+// formulário
 const form = document.getElementById("investiment-form");
 
 export function validateInputs(event) {
@@ -21,8 +22,10 @@ export function validateInputs(event) {
      }
 }
 
+// para cada elemento do formulário, verifique quem tem a tag input e tem o atributo name
 for(let formElement of form) {
      if(formElement.tagName === "INPUT" && formElement.hasAttribute("name")) {
+          // escute o event de blur, e ao
          formElement.addEventListener("blur", validateInputs);
      }
 }

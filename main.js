@@ -1,10 +1,20 @@
-import { createArrayInvestiments } from "./src/calculateModule.js";
+import { createArrayInvestiments, investimentArray } from "./src/calculateModule.js";
 import { validateInputs } from "./src/validateInputs.js";
 import Chart from 'chart.js/auto';
 
-     const calculateButton = document.getElementById("calculate-button");
-     const cleanButton = document.getElementById("clean-button");
+// botões
+const calculateButton = document.getElementById("calculate-button");
+const cleanButton = document.getElementById("clean-button");
+// gráficos
+const resultsChart = document.getElementById("results-chart");
+const progressionChart = document.getElementById("progression-chart");
+
+let chart1 = {};
+let chart2 = {};
      
+function convertToMoney(moneyValue) {
+return moneyValue.toFixed(2);
+}
 
 function render(event) {
      event.preventDefault();
@@ -13,6 +23,9 @@ function render(event) {
           return;
      }
 
+     removeChart();
+
+     // inputs
      const startingAmount = Number(document.getElementById("starting-amount").value.replace(",","."));
      const additionalAmounts = Number(document.getElementById("additional-amounts").value.replace(",","."));
      const investimentTime = Number(document.getElementById("investiment-time").value);
@@ -22,7 +35,71 @@ function render(event) {
      const tax = Number(document.getElementById("tax").value.replace(",","."));
 
      const investiments = createArrayInvestiments(startingAmount,additionalAmounts,investimentTime,investimentTimePeriod,returnRate,returnRatePeriod);
-     console.log(investiments);
+     const finalInvestimentObject = investimentArray[investimentArray.length - 1];
+    
+     // criação dos gráficos
+    chart1 = new Chart(resultsChart, {
+  type: 'doughnut',
+  data: {
+  labels: [
+    'Total investido',
+    'Rendimentos',
+    'Imposto'
+  ],
+  datasets: [{
+    label: 'Resultados',
+    data: [convertToMoney(finalInvestimentObject.investedAmount), convertToMoney((finalInvestimentObject.totalReturn * (1 - tax/100))), convertToMoney(finalInvestimentObject.totalReturn * (tax/100))],
+    backgroundColor: [
+      'rgb(128, 99, 255)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+}
+});
+
+ chart2 = new Chart(progressionChart, {
+  type: 'bar',
+  data: {
+labels: investiments.map(investimentObject => investimentObject.mouth),
+datasets: [
+     {
+          label: "total investido",
+          data: investiments.map(investimentObject => convertToMoney(investimentObject.investedAmount)),
+          backgroundColor: 'rgb(128, 99, 255)'
+     },
+     {
+          label: "rendimentos",
+          data: investiments.map(investimentObject => convertToMoney(investimentObject.mouthReturn)),
+          backgroundColor: 'rgb(99, 255, 229)'
+     }
+],
+  }, options: {
+     responsive: true,
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        stacked: true
+      }
+    }
+  },
+});
+
+
+}
+
+function isObjectEmpty(obg) {
+     return Object.keys(obg).length === 0;
+}
+
+function removeChart() {
+     if(!isObjectEmpty(chart1) && !isObjectEmpty(chart2)) {
+          chart1.destroy();
+          chart2.destroy();
+     }
 }
 
 function cleanInputs() {
@@ -31,6 +108,8 @@ function cleanInputs() {
      document.getElementById("investiment-time").value = "";
      document.getElementById("return-rate").value = "";
      document.getElementById("tax").value = "";
+
+     removeChart();
 
      const errorContainers = document.querySelectorAll(".error");
      for(let errorContain of errorContainers) {

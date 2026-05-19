@@ -63,8 +63,19 @@
     <button id="clean-button" class="w-1/2 bg-emerald-500 hover:bg-emerald-200 cursor-pointer rounded-md">Limpar</button>
     </div>
     </section>
-    <main>
-      <h2>Segunda seção</h2>
+    <main class="row-span-2 col-span-2 p-2">
+      <section id="charts-container" class="flex flex-col items-center gap-12 h-full">
+        <div class="h-[35%] w-full text-center">
+          <h2 class="font-bold">Resultados</h2>
+          <canvas id="results-chart"></canvas>
+        </div>
+        <div class="h-[55%] w-full text-center">
+          <h2 class="font-bold">Progressão</h2>
+          <canvas id="progression-chart"></canvas>
+        </div>
+      </section>
+      <section id="table-container">
+      </section>
     </main>
     <script type="module" src="./main.js"></script>
   </body>
