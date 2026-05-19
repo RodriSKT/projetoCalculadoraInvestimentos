@@ -21,7 +21,7 @@ const investimentObject = {
      investedAmount: startingAmount,
      mouthReturn: 0,
      totalReturn: 0,
-     mounth: 0,
+     month: 0,
      totalAmount: startingAmount,
 }
 
@@ -38,7 +38,7 @@ for(let i = 1; i <= mouthlyTimePeriod; i++) {
      investedAmount,
      mouthReturn,
      totalReturn,
-     mouth: i,
+     month: i,
      totalAmount,
      })
 }
