@@ -25,6 +25,9 @@ const tableArray = [
 function convertToMoney(moneyValue) {
 return moneyValue.toLocaleString("pt-br", {style:"currency", currency: "BRL"});
 }
+function convertToMoneyChart(money) {
+return Number(money.toFixed(2));
+}
 
 function render(event) {
      event.preventDefault();
@@ -51,55 +54,55 @@ function render(event) {
     
      createTable(tableArray, investiments, "investiment-table");
      // criação dos gráficos
-//     chart1 = new Chart(resultsChart, {
-//   type: 'doughnut',
-//   data: {
-//   labels: [
-//     'Total investido',
-//     'Rendimentos',
-//     'Imposto'
-//   ],
-//   datasets: [{
-//     label: 'Resultados',
-//     data: [convertToMoney(finalInvestimentObject.investedAmount), convertToMoney((finalInvestimentObject.totalReturn * (1 - tax/100))), convertToMoney(finalInvestimentObject.totalReturn * (tax/100))],
-//     backgroundColor: [
-//       'rgb(128, 99, 255)',
-//       'rgb(54, 162, 235)',
-//       'rgb(255, 205, 86)'
-//     ],
-//     hoverOffset: 4
-//   }]
-// }
-// });
+    chart1 = new Chart(resultsChart, {
+  type: 'doughnut',
+  data: {
+  labels: [
+    'Total investido',
+    'Rendimentos',
+    'Imposto'
+  ],
+  datasets: [{
+    label: 'Resultados',
+    data: [convertToMoneyChart(finalInvestimentObject.investedAmount), convertToMoneyChart((finalInvestimentObject.totalReturn * (1 - tax/100))), convertToMoneyChart(finalInvestimentObject.totalReturn * (tax/100))],
+    backgroundColor: [
+      'rgb(128, 99, 255)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+}
+});
 
-//  chart2 = new Chart(progressionChart, {
-//   type: 'bar',
-//   data: {
-// labels: investiments.map(investimentObject => investimentObject.mouth),
-// datasets: [
-//      {
-//           label: "total investido",
-//           data: investiments.map(investimentObject => convertToMoney(investimentObject.investedAmount)),
-//           backgroundColor: 'rgb(128, 99, 255)'
-//      },
-//      {
-//           label: "rendimentos",
-//           data: investiments.map(investimentObject => convertToMoney(investimentObject.mouthReturn)),
-//           backgroundColor: 'rgb(99, 255, 229)'
-//      }
-// ],
-//   }, options: {
-//      responsive: true,
-//     scales: {
-//       x: {
-//         stacked: true
-//       },
-//       y: {
-//         stacked: true
-//       }
-//     }
-//   },
-// });
+ chart2 = new Chart(progressionChart, {
+  type: 'bar',
+  data: {
+labels: investiments.map(investimentObject => investimentObject.month),
+datasets: [
+     {
+          label: "total investido",
+          data: investiments.map(investimentObject => convertToMoneyChart(investimentObject.investedAmount)),
+          backgroundColor: 'rgb(128, 99, 255)'
+     },
+     {
+          label: "rendimentos",
+          data: investiments.map(investimentObject => convertToMoneyChart(investimentObject.mouthReturn)),
+          backgroundColor: 'rgb(99, 255, 229)'
+     }
+],
+  }, options: {
+     responsive: true,
+    scales: {
+      x: {
+        stacked: true
+      },
+      y: {
+        stacked: true
+      }
+    }
+  },
+});
     
 
 }
@@ -131,6 +134,19 @@ function cleanInputs() {
 
      }
 }
+
+const mainElem = document.querySelector("main");
+const carousselElem = document.getElementById("caroussel");
+const previousBtnElem = document.getElementById("previous-btn");
+const nextBtnElem = document.getElementById("next-btn");
+
+previousBtnElem.addEventListener("click", () => {
+     carousselElem.scrollLeft -= mainElem.clientWidth;
+});
+
+nextBtnElem.addEventListener("click", () => {
+     carousselElem.scrollLeft += mainElem.clientWidth;
+})
 
 calculateButton.addEventListener("click", render);
 cleanButton.addEventListener("click", cleanInputs)

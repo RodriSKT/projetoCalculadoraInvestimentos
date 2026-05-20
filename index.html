@@ -63,21 +63,31 @@
     <button id="clean-button" class="w-1/2 bg-emerald-500 hover:bg-emerald-200 cursor-pointer rounded-md">Limpar</button>
     </div>
     </section>
-    <main class="row-span-2 col-span-2 p-2">
-      <!-- <section id="charts-container" class="flex flex-col items-center gap-12 h-full">
-        <div class="h-[35%] w-full text-center">
+    <main class="row-span-2 col-span-2 p-2 max-h-[100dvh] relative">
+      <div id="caroussel" class="flex h-full w-full overflow-x-auto scroll-smooth">
+        <button id="previous-btn" class="absolute top-[48%] p-4 left-1 bg-slate-200 opacity-50 cursor-pointer hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+  <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+</svg>
+</button>
+        <button id="next-btn" class="absolute top-[48%] p-4 right-1 bg-slate-200 opacity-50 cursor-pointer hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+  <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+</svg>
+</button>
+      <section id="charts-container" class="flex flex-col basis-full shrink-0 items-center gap-8 h-full py-4">
+        <div class="h-[35%] w-full flex flex-col items-center justify-center">
           <h2 class="font-bold">Resultados</h2>
           <canvas id="results-chart"></canvas>
         </div>
-        <div class="h-[55%] w-full text-center">
+        <div class="h-[55%] w-full flex flex-col items-center justify-center">
           <h2 class="font-bold">Progressão</h2>
           <canvas id="progression-chart"></canvas>
         </div>
-      </section> -->
-      <section id="table-container" class="h-full overflow-y-auto">
+      </section>
+      <section id="table-container" class="h-full basis-full shrink-0 overflow-y-auto">
         <h2 class="text-center font-bold text-lg">Tabela de resultados</h2>
         <table id="investiment-table" class="w-full max-h-full border-separate"></table>
       </section>
+      </div>
     </main>
     <script type="module" src="./main.js"></script>
   </body>
